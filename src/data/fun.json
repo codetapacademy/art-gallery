@@ -3,22 +3,26 @@
     {
       "name": "Allison Barr",
       "age": 24,
-      "active": false
+      "active": false,
+      "isUpperCase": false
     },
     {
       "name": "Carmella Reeves",
       "age": 21,
-      "active": false
+      "active": false,
+      "isUpperCase": false
     },
     {
       "name": "Loretta Morton",
       "age": 32,
-      "active": false
+      "active": false,
+      "isUpperCase": false
     },
     {
       "name": "Wilkins Cotton",
       "age": 36,
-      "active": true
+      "active": true,
+      "isUpperCase": false
     }
   ],
   "altceva": [

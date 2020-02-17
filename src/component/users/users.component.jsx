@@ -7,6 +7,11 @@ const trierea = (state = [], action) => {
       return action.list
     case 'TOGGLE_ACTIVE':
       return state.map(baiet => ({ ...baiet, active: baiet.name === action.name ? !baiet.active : baiet.active }))
+    case 'CAPITALIZE':
+      return state.map(baiet => ({
+        ...baiet,
+        isUpperCase: baiet.name === action.name
+      }))
     default:
       return state
   }
@@ -25,10 +30,16 @@ const Users = () => {
       .then(r => r.json())
       .then(list => initializeList(list))
   }, [])
-  console.log(baietasii)
+
   const toggleActive = name => {
     laMaiMulti({
       type: 'TOGGLE_ACTIVE',
+      name
+    })
+  }
+  const capitalize = name => {
+    laMaiMulti({
+      type: 'CAPITALIZE',
       name
     })
   }
@@ -37,7 +48,17 @@ const Users = () => {
       <div>
         Users
       </div>
-      {baietasii.map(baiet => <StyledUserListItem onClick={() => toggleActive(baiet.name)} color={baiet.active ? 'green' : 'red'} key={baiet.name}>{baiet.name} {baiet.age}</StyledUserListItem>)}
+      {baietasii.map((baiet = {}) => (
+        <StyledUserListItem
+          onClick={() => toggleActive(baiet.name)}
+          color={baiet && baiet.active ? 'green' : 'red'}
+          key={baiet.name}
+          isUpperCase={baiet.isUpperCase}
+          onMouseOver={() => capitalize(baiet.name)}
+        >
+          {baiet.name} {baiet.age}
+        </StyledUserListItem>
+      ))}
     </div>
   )
 }
